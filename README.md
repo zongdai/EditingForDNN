@@ -10,11 +10,11 @@ python tools/infer.py --pretrained_model ./pretrained_model/state_rcnn_double_ba
 The pretrained model can be downloaded at [here](https://pan.baidu.com/s/1JzErnI4S0WV-ME4cNQd2xg) (code:owov)
 
 
-<img src="https://github.com/zongdai/EditForDNN/blob/master/image/infer_result.jpg" width="860"/>
+<img src="https://github.com/zongdai/EditingForDNN/blob/master/image/infer_result.jpg" width="860"/>
 
 
 ## Editing Data
-<img src="https://github.com/zongdai/EditForDNN/blob/master/image/editing_images.jpg" width="860"/>
+<img src="https://github.com/zongdai/EditingForDNN/blob/master/image/editing_images.jpg" width="860"/>
 
 ## CUS Dataset
-<img src="https://github.com/zongdai/EditForDNN/blob/master/image/CUS_images.jpg" width="860"/>
+<img src="https://github.com/zongdai/EditingForDNN/blob/master/image/CUS_images.jpg" width="860"/>
