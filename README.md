@@ -1,9 +1,9 @@
 # 3D Part Guided Image Editing for Fine-grained Object Understanding
 <img src="https://github.com/zongdai/EditingForDNN/blob/master/image/Overview.jpg" width="860"/>
 
-## Install & Requirements
-The code based on pytorch=1.2.0, torchvision=0.4.0 and python3.6. Please refer to `requirements.txt` for detailed information.
-
+## Requirements
+* python 3.6, cuda 9.2, pytorch 1.2.0, torchvision 0.4.0;
+* python-opencv
 ## Usage
 ```
 python tools/infer.py --pretrained_model ./pretrained_model/state_rcnn_double_backbone.pth --input_dir ./demo/imgs --output_dir ./demo/res
