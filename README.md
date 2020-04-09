@@ -11,7 +11,7 @@ Holistically understanding an object with its 3D movable parts is essential for 
 * python-opencv
 ## Usage
 ```
-python tools/infer.py --pretrained_model ./pretrained_model/state_rcnn_double_backbone.pth --input_dir ./demo/imgs --output_dir ./demo/res
+python tool/infer.py --pretrained_model ./pretrained_model/state_rcnn_double_backbone.pth --input_dir ./demo/imgs --output_dir ./demo/res
 ```
 The pretrained model can be downloaded at [here](https://pan.baidu.com/s/1JzErnI4S0WV-ME4cNQd2xg) (password:owov)
 
