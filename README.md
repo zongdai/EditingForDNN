@@ -20,11 +20,11 @@ The pretrained model can be downloaded at [here](https://pan.baidu.com/s/1JzErnI
 
 
 ## Editing Data
-The editing data totally 25k will be released soon.
+The editing data totally 25k for training will be released soon.
 
 <img src="https://github.com/zongdai/EditingForDNN/blob/master/image/editing_images.jpg" width="860"/>
 
 ## CUS Dataset
-The editing data totally 25k will be released soon.
+CUS Dataset will be released soon.
 
 <img src="https://github.com/zongdai/EditingForDNN/blob/master/image/CUS_images.jpg" width="860"/>
