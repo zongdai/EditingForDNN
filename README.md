@@ -8,7 +8,7 @@ Holistically understanding an object with its 3D movable parts is essential for 
 
 ## Requirements
 * python 3.6, cuda 9.2, pytorch 1.2.0, torchvision 0.4.0;
-* python-opencv
+* python-opencv, pycocotools
 ## Inferring
 ```
 python tool/infer.py --pretrained_model ./pretrained_model/state_rcnn_double_backbone.pth --input_dir ./demo/imgs --output_dir ./demo/res
