@@ -140,7 +140,7 @@ class FasterRCNN(GeneralizedRCNN):
         >>> predictions = model(x)
     """
 
-    def __init__(self, backbone, backbone2, is_double_backbone=True, num_classes=None, num_states=6,
+    def __init__(self, backbone, backbone2, is_double_backbone=True, num_classes=None, 
                  # transform parameters
                  min_size=800, max_size=1333,
                  image_mean=None, image_std=None,
@@ -156,7 +156,7 @@ class FasterRCNN(GeneralizedRCNN):
                  box_score_thresh=0.05, box_nms_thresh=0.5, box_detections_per_img=100,
                  box_fg_iou_thresh=0.5, box_bg_iou_thresh=0.5,
                  box_batch_size_per_image=512, box_positive_fraction=0.25,
-                 bbox_reg_weights=None, is_fpn=True):
+                 bbox_reg_weights=None, is_fpn=True, num_states=6):
 
         if not hasattr(backbone, "out_channels"):
             raise ValueError(
@@ -360,34 +360,8 @@ def fasterrcnn_resnet50_fpn(pretrained=False, progress=True,
     backbone = resnet_fpn_backbone('resnet50', True)
     backbone2 = resnet_fpn_backbone('resnet50', pretrained_backbone)
 
-    # here to init the backbone
-    # backbone_dict = backbone.state_dict()
-    # state_dict_backbone = torch.load('model.pth')
-    # restore_dict = {k[len("backbone."):]: v for k, v in state_dict_backbone.items() if "backbone" in k}
-    # backbone_dict.update(restore_dict)
-    # backbone.load_state_dict(backbone_dict)
-
-    
-    # backbone2_dict = backbone2.state_dict()
-    # state_dict_backbone2 = torch.load('fasterrcnn_resnet50_fpn_coco-258fb6c6.pth')
-    # restore_dict2 = {k[len("backbone."):]: v for k, v in state_dict_backbone2.items() if "backbone" in k}
-    # backbone2_dict.update(restore_dict2)
-    # backbone2.load_state_dict(backbone2_dict)
-        
-    # state_dict = load_state_dict_from_url(model_urls['fasterrcnn_resnet50_fpn_coco'],progress=progress)
-    # restore_dict = {k: v for k, v in dic.items() if "backbone" in k}
-    # backbone2.load_state_dict(restore_dict)
-
-    # for name,param in backbone.named_parameters():
-    #     print(name)
-
-
+  
     model = FasterRCNN(backbone, backbone2, num_classes, **kwargs)
-    # if pretrained:
-    #     state_dict = load_state_dict_from_url(model_urls['fasterrcnn_resnet50_fpn_coco'],
-    #                                           progress=progress)
-    #     for k, v in state_dict.items():
-    #         print(k)
-    #     model.load_state_dict(state_dict)
+   
     return model
 
