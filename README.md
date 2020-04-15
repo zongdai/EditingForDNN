@@ -9,7 +9,7 @@ Holistically understanding an object with its 3D movable parts is essential for 
 ## Requirements
 * python 3.6, cuda 9.2, pytorch 1.2.0, torchvision 0.4.0;
 * python-opencv
-## Usage
+## Infer
 ```
 python tool/infer.py --pretrained_model ./pretrained_model/state_rcnn_double_backbone.pth --input_dir ./demo/imgs --output_dir ./demo/res
 ```
@@ -19,10 +19,10 @@ The pretrained model can be downloaded at [here](https://pan.baidu.com/s/1JzErnI
 <img src="https://github.com/zongdai/EditingForDNN/blob/master/image/infer_result.jpg" width="860"/>
 
 
-## Editing Data
-The editing data totally 25k for training will be released soon.
-
+## Train
+The editing data totally 27k could be downloaded at [here](https://pan.baidu.com/s/1Z5rBC9Jr-Fa22bTiJ7PiEQ)(password:6smu)
 <img src="https://github.com/zongdai/EditingForDNN/blob/master/image/editing_images.jpg" width="860"/>
+
 
 ## CUS Dataset
 CUS Dataset will be released soon.
