@@ -136,7 +136,8 @@ model_urls = {
 
 
 def maskrcnn_resnet50_fpn(pretrained=False, progress=True,
-                          num_classes=91, pretrained_backbone=True, is_double_backbone=True, **kwargs):
+                          num_classes=91, pretrained_backbone=True, is_double_backbone=True, main_backbone_pretrained_path=None,
+                          aux_backbone_pretrained_path=None, **kwargs):
     """
     Constructs a Mask R-CNN model with a ResNet-50-FPN backbone.
 
@@ -183,7 +184,20 @@ def maskrcnn_resnet50_fpn(pretrained=False, progress=True,
     backbone = resnet_fpn_backbone('resnet50', pretrained_backbone)
     backbone2 = resnet_fpn_backbone('resnet50', pretrained_backbone)
 
-   
+    if main_backbone_pretrained_path is not None and aux_backbone_pretrained_path is not None:
+        # here to init the backbone
+        backbone_dict = backbone.state_dict()
+        state_dict_backbone = torch.load(main_backbone_pretrained_path)
+        restore_dict = {k[len("backbone."):]: v for k, v in state_dict_backbone['model'].items() if "backbone" in k}
+        backbone_dict.update(restore_dict)
+        backbone.load_state_dict(backbone_dict)
+        
+        backbone2_dict = backbone2.state_dict()
+        state_dict_backbone2 = torch.load(aux_backbone_pretrained_path)
+        restore_dict2 = {k[len("backbone."):]: v for k, v in state_dict_backbone2.items() if "backbone" in k}
+        backbone2_dict.update(restore_dict2)
+        backbone2.load_state_dict(backbone2_dict)
+
 
     model = MaskRCNN(backbone, backbone2, is_double_backbone, num_classes, **kwargs)
     

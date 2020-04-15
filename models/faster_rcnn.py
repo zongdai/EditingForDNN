@@ -140,7 +140,7 @@ class FasterRCNN(GeneralizedRCNN):
         >>> predictions = model(x)
     """
 
-    def __init__(self, backbone, backbone2, is_double_backbone=True, num_classes=None,
+    def __init__(self, backbone, backbone2, is_double_backbone=True, num_classes=None, num_states=6,
                  # transform parameters
                  min_size=800, max_size=1333,
                  image_mean=None, image_std=None,
@@ -230,7 +230,7 @@ class FasterRCNN(GeneralizedRCNN):
                 representation_size)
         states_predictor = StatesRCNNPredictor(
                 representation_size,
-                6)
+                num_states)
 
         roi_heads = RoIHeads(
             # Box
