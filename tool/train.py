@@ -55,7 +55,7 @@ def main(args):
     # Data loading code
     print("Loading data")
 
-    dataset = get_coco_for_apollo(os.path.join(args.data_path, 'result_more_colors'),
+    dataset = get_coco_for_apollo(os.path.join(args.data_path, 'images'),
      os.path.join(args.data_path, 'cus_editing_data.json'), get_transform(train=True))
 
     print("Creating data loaders")
