@@ -41,3 +41,6 @@ python -m torch.distributed.launch --nproc_per_node=4 --use_env tool/train.py
 CUS Dataset will be released soon.
 
 <img src="https://github.com/zongdai/EditingForDNN/blob/master/image/CUS_images.jpg" width="860"/>
+
+## Concact
+For questions regarding our work, feel free to post here or directly contact the authors (zongdai@buaa.edu.cn).
