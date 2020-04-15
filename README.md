@@ -34,8 +34,7 @@ Next download the main-backbone and aux-backbone pretrained models at [here](htt
 Train model with 4 GPUs.
 
 ```
-python -m torch.distributed.launch --nproc_per_node=4 --use_env tool/train.py \
-
+python -m torch.distributed.launch --nproc_per_node=4 --use_env tool/train.py
 ```
 
 ## CUS Dataset
