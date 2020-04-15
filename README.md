@@ -9,7 +9,7 @@ Holistically understanding an object with its 3D movable parts is essential for 
 ## Requirements
 * python 3.6, cuda 9.2, pytorch 1.2.0, torchvision 0.4.0;
 * python-opencv
-## Infer
+## Inferring
 ```
 python tool/infer.py --pretrained_model ./pretrained_model/state_rcnn_double_backbone.pth --input_dir ./demo/imgs --output_dir ./demo/res
 ```
@@ -19,10 +19,24 @@ The pretrained model can be downloaded at [here](https://pan.baidu.com/s/1JzErnI
 <img src="https://github.com/zongdai/EditingForDNN/blob/master/image/infer_result.jpg" width="860"/>
 
 
-## Train
+## Training
 The editing data totally 27k could be downloaded at [here](https://pan.baidu.com/s/1Z5rBC9Jr-Fa22bTiJ7PiEQ)(password:6smu)
 <img src="https://github.com/zongdai/EditingForDNN/blob/master/image/editing_images.jpg" width="860"/>
+Download the editing data and place a softlink (or the actual data) in EditingForDNN/editing_data/.
+```
+cd EditingForDNN
+mkdir editing_data
+ln -s /path/images ./editing_data/
+ln -s /path/cus_editing_data.json ./editing_data/
+```
+Next download the main-backbone and aux-backbone pretrained models at [here](https://pan.baidu.com/s/1Hqq0e4mbYyaMK55UL0oEBQ)(password:fmkx) and put them in ./pretrained_model
 
+Train model with 4 GPUs.
+
+```
+python -m torch.distributed.launch --nproc_per_node=4 --use_env tool/train.py \
+
+```
 
 ## CUS Dataset
 CUS Dataset will be released soon.
