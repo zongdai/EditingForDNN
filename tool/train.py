@@ -38,8 +38,6 @@ def get_model_maskrcnn():
     return model
 
 def get_double_backbone_model(args):
-    main = '/media/vrlab/556cb30b-ef30-4e11-a77a-0e33ba901842/Expriments/CVPR_model/Main_backbone/maskrcnn_apollocar3d.pth'
-    aux = '/media/vrlab/556cb30b-ef30-4e11-a77a-0e33ba901842/Expriments/part_seg3/maskrcnn_resnet50_fpn_coco-bf2d0c1e.pth'
     model = mask_rcnn.maskrcnn_resnet50_fpn(pretrained=True, num_classes=3, main_backbone_pretrained_path=args.main_backbone_path, aux_backbone_pretrained_path=args.aux_backbone_path)
     for name,param in model.named_parameters():
         if "backbone" in name:
