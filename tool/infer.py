@@ -11,7 +11,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--pretrained_model', type=str,
-                        default='./pretrained_models/double_backbone_1022.pth')
+                        default='./pretrained_models/state_rcnn_double_backbone.pth')
     parser.add_argument('--input_dir', type=str, default='./demo/imgs', help='input data dir')
     parser.add_argument('--output_dir', type=str, default='./demo/res', help='output dir')
     parser.add_argument('--device', type=str, default='cuda:0')
@@ -37,14 +37,23 @@ def append_mask(mask_img, img, body_color, mask_part=None, alpha=0.3, color_part
 			img[:, :, i][append_area] = color[i] * mask_img[append_area] * alpha + img[:, :, i][append_area] * (1-alpha)
 			img[:, :, i][append_area_part] = img[:, :, i][append_area_part] * (1-0.4) + color_part[i] * mask_part[append_area_part] * 0.4
 		
-		_, contours, _ = cv2.findContours(mask_to_drawborder.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+		findContours_res = cv2.findContours(mask_to_drawborder.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+		if len(findContours_res) == 3:
+			contours = findContours_res[1]
+		else:
+			contours = findContours_res[0]
+
 		cv2.drawContours(img, contours, -1, (255, 255, 255), 2, cv2.LINE_AA)
 
 	else:
 		for i in range(3):
 			img[:, :, i][append_area] = color[i] * mask_img[append_area] * alpha + img[:, :, i][append_area] * (1-alpha)
 	
-		_, contours, _ = cv2.findContours(mask_to_drawborder.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+		findContours_res = cv2.findContours(mask_to_drawborder.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+		if len(findContours_res) == 3:
+			contours = findContours_res[1]
+		else:
+			contours = findContours_res[0]
 		cv2.drawContours(img, contours, -1, (255, 255, 255), 2, cv2.LINE_AA)
 	return img
 
@@ -150,13 +159,10 @@ def forword_net(model, img, save_path, states_descriptions, args):
 	img = Image.fromarray(img_np.astype('uint8')).convert('RGB')
 	draw = ImageDraw.Draw(img)
 	box_width = 1
-	font = ImageFont.truetype('FreeMono.ttf', 20)
 	if img_np.shape[1] == 3384:
 		box_width = 3
-		font = ImageFont.truetype('FreeMono.ttf', 40)
 	elif img_np.shape[1] == 1920 or img_np.shape[1] == 2048:
 		box_width = 2
-		font = ImageFont.truetype('FreeMono.ttf', 30)
 
 
 	for bbox in (new_normal_box):
@@ -170,7 +176,7 @@ def forword_net(model, img, save_path, states_descriptions, args):
 def infer_sample(args):
 	states_descriptions = ["Bonnet is lifted", "Trunk is lifted", "Front-left door is opened", "Front-right door is opended", "Back-left door is opened", "Back-right door is opened"]
 
-	state_dict = torch.load(args.pretrained_model)
+	state_dict = torch.load(args.pretrained_model, map_location='cpu')
 
 	model = maskrcnn_resnet50_fpn(pretrained=False, num_classes=3, is_double_backbone=True)	
 
@@ -181,6 +187,10 @@ def infer_sample(args):
 	
 	
 	imgs = [f for f in os.listdir(imgdir)]
+
+	if not os.path.isdir(args.output_dir):
+		os.mkdir(args.output_dir)
+
 	for i, img_name in enumerate(imgs):
 		path = os.path.join(imgdir, img_name)
 		img = Image.open(path).convert("RGB")
