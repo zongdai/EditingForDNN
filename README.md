@@ -20,7 +20,7 @@ The pretrained model can be downloaded at [here](https://pan.baidu.com/s/1JzErnI
 
 
 ## Training
-The editing data totally 27k could be downloaded at [here](https://pan.baidu.com/s/1Z5rBC9Jr-Fa22bTiJ7PiEQ)(password:6smu)
+The editing data totally 27k could be downloaded at [here](https://pan.baidu.com/s/1UW6VmnYbeuvnxJm9rvuKZw)(password:kmve)
 <img src="https://github.com/zongdai/EditingForDNN/blob/master/image/editing_images.jpg" width="860"/>
 Download the editing data and place a softlink (or the actual data) in EditingForDNN/editing_data/.
 ```
