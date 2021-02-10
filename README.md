@@ -9,41 +9,8 @@ Holistically understanding an object with its 3D movable parts is essential for 
 
 <img src="https://github.com/zongdai/EditingForDNN/blob/master/image/Overview.jpg" width="860"/>
 
-## Requirements
-* python 3.6, cuda 9.2, pytorch 1.2.0, torchvision 0.4.0;
-* python-opencv, pycocotools
-## Inferring
-```
-python tool/infer.py --pretrained_model ./pretrained_model/state_rcnn_double_backbone.pth --input_dir ./demo/imgs --output_dir ./demo/res
-```
-The pretrained model can be downloaded at [BaiduNetdisk](https://pan.baidu.com/s/1JzErnI4S0WV-ME4cNQd2xg) (password:owov) or [GoogleDrive](https://drive.google.com/file/d/1yi4LIuRkf7oWI6FIuIVTGIuVUN0zNVqi/view?usp=sharing)
 
 
-<img src="https://github.com/zongdai/EditingForDNN/blob/master/image/infer_result.jpg" width="860"/>
-
-
-## Training
+## Data
 The editing data totally 27k could be downloaded at [BaiduNetdisk](https://pan.baidu.com/s/1UW6VmnYbeuvnxJm9rvuKZw)(password:kmve)
-<img src="https://github.com/zongdai/EditingForDNN/blob/master/image/editing_images.jpg" width="860"/>
-Download the editing data and place a softlink (or the actual data) in EditingForDNN/editing_data/.
-```
-cd EditingForDNN
-mkdir editing_data
-ln -s /path/images ./editing_data/
-ln -s /path/cus_editing_data.json ./editing_data/
-```
-Next download the main-backbone and aux-backbone pretrained models at [BaiduNetdisk](https://pan.baidu.com/s/1Hqq0e4mbYyaMK55UL0oEBQ)(password:fmkx) or [GoogleDrive(main)](https://drive.google.com/file/d/16AC_fFTarxhUt6mIel0O6vXzQIenmQbq/view?usp=sharing),[GoogleDrive(aux)](https://drive.google.com/file/d/1I4QJKXNVRv_lqzGgjKuU98Y7kaYCaU0v/view?usp=sharing) and put them in ./pretrained_model
 
-Train model with 4 GPUs.
-
-```
-python -m torch.distributed.launch --nproc_per_node=4 --use_env tool/train.py
-```
-
-## CUS Dataset
-CUS Dataset will be released soon.
-
-<img src="https://github.com/zongdai/EditingForDNN/blob/master/image/CUS_images.jpg" width="860"/>
-
-## Concact
-For questions regarding our work, feel free to post here or directly contact the authors (zongdai@buaa.edu.cn).
