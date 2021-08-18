@@ -40,10 +40,15 @@ Train model with 4 GPUs.
 python -m torch.distributed.launch --nproc_per_node=4 --use_env tool/train.py
 ```
 
-## CUS Dataset
-CUS Dataset will be released soon.
+## Citation
+If you find this project useful for your research, please use the following BibTeX entry.
 
-<img src="https://github.com/zongdai/EditingForDNN/blob/master/image/CUS_images.jpg" width="860"/>
-
+    @inproceedings{liu20203d,
+    title={3d part guided image editing for fine-grained object understanding},
+    author={Liu, Zongdai and Lu, Feixiang and Wang, Peng and Miao, Hui and Zhang, Liangjun and Yang, Ruigang and Zhou, Bin},
+    booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+    pages={11336--11345},
+    year={2020}
+    }
 ## Concact
 For questions regarding our work, feel free to post here or directly contact the authors (zongdai@buaa.edu.cn).
